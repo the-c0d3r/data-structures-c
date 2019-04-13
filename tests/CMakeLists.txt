@@ -1,0 +1,24 @@
+cmake_minimum_required(VERSION 2.6)
+
+PROJECT(data-structure-test)
+ADD_DEFINITIONS(-Wall -Werror --std=gnu99 -Wmissing-declarations)
+
+FILE(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
+
+SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/../build/modules")
+SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
+
+FIND_PACKAGE(CMOCKA REQUIRED)
+INCLUDE_DIRECTORIES(${LIBCMOCKA_INCLUDE_DIR})
+
+ADD_EXECUTABLE(
+    test_stack
+    ../src/stack.h
+    test_stack.c
+)
+
+TARGET_LINK_LIBRARIES(
+    test_stack
+    ${LIBCMOCKA_LIBRARIES}
+)
+
