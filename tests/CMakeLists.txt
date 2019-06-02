@@ -30,6 +30,6 @@ FOREACH(i RANGE ${count})
         ${test_name}
         ${CMOCKA_LIBRARY}
     )
-    ADD_TEST(${test_name} ${test_name})
+    ADD_TEST(NAME ${test_name} COMMAND ${test_name})
 ENDFOREACH()
 
