@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 /**
- * Creates a new node and attach to root if not NULL
+ * @brief creates a new node
  * @param value: the value to write to
  * @return: ptr to newly created node || null
  */
@@ -20,9 +20,7 @@ node_t* create_node(int value) {
 }
 
 /**
- * Check if it is a single node
- * Check if it is the head
- * Check if it is the tail
+ * @brief destroy the node properly
  * @param node: the node to delete
  */
 void destroy_node(node_t* node) {
