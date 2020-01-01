@@ -19,15 +19,25 @@ FIND_LIBRARY(CMOCKA_LIBRARY cmocka HINTS ../../test/cmocka/build/src)
 
 # List of tests
 LIST(APPEND tests_names "test_stack")
+LIST(APPEND tests_names "test_linked_list")
+
+SET(MODULES
+    stack
+    linked_list
+    )
 
 # Declare all tests targets
 LIST(LENGTH tests_names count)
 MATH(EXPR count "${count} - 1")
-FOREACH(i RANGE ${count})
+FOREACH (i RANGE ${count})
     LIST(GET tests_names ${i} test_name)
     ADD_EXECUTABLE(${test_name} ${test_name}.c)
+    # adding executable with the source dynamically
+    STRING(REGEX REPLACE "test_" "" module_name ${test_name})
+    # deduce module name from test by replacing "test_" prefix
     TARGET_LINK_LIBRARIES(
         ${test_name}
+        ${module_name}
         ${CMOCKA_LIBRARY}
     )
     ADD_TEST(NAME ${test_name} COMMAND ${test_name})
