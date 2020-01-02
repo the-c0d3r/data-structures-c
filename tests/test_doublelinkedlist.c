@@ -55,7 +55,7 @@ static void test_insert_bulk(void** state) {
     assert_ptr_equal(dlinkedlist->head, node1);
     assert_ptr_equal(dlinkedlist->last, node2);
 
-    assert_ptr_equal(dlinkedlist->head->next, node1);
+    assert_ptr_equal(dlinkedlist->head->next, node2);
     assert_ptr_equal(dlinkedlist->last->prev, node1);
     destroy(dlinkedlist);
 }

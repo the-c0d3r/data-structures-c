@@ -30,7 +30,7 @@ void destroy_node(node_t* node) {
  * @brief function to create new double linkedlist
  * @return: ptr to newly created double linkedlist || null
  */
-double_linkedlist_t* create_linkedlist() {
+double_linkedlist_t* create_double_linkedlist() {
     double_linkedlist_t* dlinkedlist = malloc(1 * sizeof(double_linkedlist_t));
     if (!dlinkedlist) {
         perror("Error allocating memory\n");
@@ -56,6 +56,7 @@ int insert(double_linkedlist_t* dlinkedlist, node_t* node) {
         dlinkedlist->size++;
     } else {
         dlinkedlist->last->next = node;
+        node->prev = dlinkedlist->last;
         dlinkedlist->last = node;
         dlinkedlist->size++;
     }
@@ -89,12 +90,17 @@ int delete(double_linkedlist_t* dlinkedlist, node_t* node) {
     // if node is not found return 1
     if (!pointer) return 1;
 
-    pointer->prev->next = pointer->next;
     // case when last node
-    if (node == dlinkedlist->last)
+    if (node == dlinkedlist->last) {
         dlinkedlist->last = pointer->prev;
-    if (node == dlinkedlist->head)
+        pointer->prev->next = pointer->next;
+    } else if (node == dlinkedlist->head) {
         dlinkedlist->head = pointer->next;
+        pointer->next->prev = pointer->prev;
+    } else {
+        pointer->prev->next = pointer->next;
+        pointer->next->prev = pointer->prev;
+    }
 
     destroy_node(pointer);
     dlinkedlist->size--;
@@ -141,6 +147,7 @@ node_t* pop(double_linkedlist_t* dlinkedlist) {
     pointer = dlinkedlist->last;
     pointer->prev->next = NULL;
     dlinkedlist->last = pointer->prev;
+    dlinkedlist->size--;
 
     return pointer;
 }
