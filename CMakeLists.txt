@@ -8,7 +8,8 @@ SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 
 # compile modules as library for unit testing to link
 ADD_LIBRARY(stack OBJECT src/stack.c)
-ADD_LIBRARY(linked_list OBJECT src/linked_list.c)
+ADD_LIBRARY(linkedlist OBJECT src/linkedlist.c)
+ADD_LIBRARY(doublelinkedlist OBJECT src/doublelinkedlist.c)
 
 # unit testing
 FIND_PACKAGE(CMOCKA REQUIRED)

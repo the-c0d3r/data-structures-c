@@ -1,7 +1,4 @@
-#include "linked_list.h"
-
-#include <stdio.h>
-#include <stdlib.h>
+#include "linkedlist.h"
 
 /**
  * @brief creates a new node
@@ -45,7 +42,7 @@ linkedlist_t* create_linkedlist() {
  * @brief: function to insert the node into the linkedlist
  * @param linkedlist: linkedlist to insert
  * @param node: the node to insert
- * @return: 0 on success | 1 on failure;
+ * @return: 0 on success | 1 on failure
  */
 int insert(linkedlist_t* linkedlist, node_t* node) {
     if (!linkedlist || !node) return 1;

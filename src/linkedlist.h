@@ -1,8 +1,8 @@
-#include <stdlib.h>
-
 #ifndef DATA_STRUCTURES_LINKED_LIST_H
 #define DATA_STRUCTURES_LINKED_LIST_H
 
+#include <stdio.h>
+#include <stdlib.h>
 
 typedef struct node_t {
     int value;
@@ -33,4 +33,5 @@ node_t* get(linkedlist_t* linkedlist, int index);
 node_t* pop(linkedlist_t* linkedlist);
 
 int destroy(linkedlist_t* linkedlist);
+
 #endif //DATA_STRUCTURES_LINKED_LIST_H

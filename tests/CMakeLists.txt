@@ -19,12 +19,8 @@ FIND_LIBRARY(CMOCKA_LIBRARY cmocka HINTS ../../test/cmocka/build/src)
 
 # List of tests
 LIST(APPEND tests_names "test_stack")
-LIST(APPEND tests_names "test_linked_list")
-
-SET(MODULES
-    stack
-    linked_list
-    )
+LIST(APPEND tests_names "test_linkedlist")
+LIST(APPEND tests_names "test_doublelinkedlist")
 
 # Declare all tests targets
 LIST(LENGTH tests_names count)

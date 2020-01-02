@@ -3,7 +3,7 @@
 #include <setjmp.h>
 #include <cmocka.h>
 
-#include "../src/linked_list.h"
+#include "../src/linkedlist.h"
 
 static void test_node(void** state) {
     // creates a node node
