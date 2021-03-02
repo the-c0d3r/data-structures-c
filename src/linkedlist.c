@@ -35,6 +35,8 @@ linkedlist_t* create_linkedlist() {
         return NULL;
     }
     linkedlist->size = 0;
+    linkedlist->head = NULL;
+    linkedlist->tail = NULL;
     return linkedlist;
 }
 
@@ -50,11 +52,11 @@ int insert(linkedlist_t* linkedlist, node_t* node) {
     // empty linkedlist
     if (linkedlist->size == 0) {
         linkedlist->head = node;
-        linkedlist->last = node;
+        linkedlist->tail = node;
         linkedlist->size++;
     } else {
-        linkedlist->last->next = node;
-        linkedlist->last = node;
+        linkedlist->tail->next = node;
+        linkedlist->tail = node;
         linkedlist->size++;
     }
 
@@ -74,7 +76,7 @@ int delete(linkedlist_t* linkedlist, node_t* node) {
     if (linkedlist->size == 1) {
         destroy_node(node);
         linkedlist->head = NULL;
-        linkedlist->last = NULL;
+        linkedlist->tail = NULL;
         linkedlist->size--;
         return 0;
     }
@@ -90,9 +92,9 @@ int delete(linkedlist_t* linkedlist, node_t* node) {
     if (!pointer) return 1;
 
     prev->next = pointer->next;
-    // case when last node
-    if (node == linkedlist->last)
-        linkedlist->last = prev;
+    // case when tail node
+    if (node == linkedlist->tail)
+        linkedlist->tail = prev;
     if (node == linkedlist->head)
         linkedlist->head = pointer->next;
 
@@ -122,9 +124,9 @@ int destroy(linkedlist_t* linkedlist) {
 }
 
 /**
- * @brief function to pop the last item
+ * @brief function to pop the tail item
  * @param linkedlist
- * @return: last node || NULL
+ * @return: tail node || NULL
  */
 node_t* pop(linkedlist_t* linkedlist) {
     if (!linkedlist || linkedlist->size == 0) return NULL;
@@ -133,20 +135,20 @@ node_t* pop(linkedlist_t* linkedlist) {
     if (linkedlist->size == 1) {
         pointer = linkedlist->head;
         linkedlist->head = NULL;
-        linkedlist->last = NULL;
+        linkedlist->tail = NULL;
         linkedlist->size--;
         return pointer;
     }
 
     pointer = linkedlist->head;
     while (pointer) {
-        if (pointer->next == linkedlist->last) break;
+        if (pointer->next == linkedlist->tail) break;
         pointer = pointer->next;
     }
     node_t* last = pointer->next;
     pointer->next = NULL;
 
-    linkedlist->last = pointer;
+    linkedlist->tail = pointer;
     linkedlist->size--;
 
     return last;

@@ -11,7 +11,7 @@ typedef struct node_t {
 
 typedef struct {
     struct node_t* head;
-    struct node_t* last;
+    struct node_t* tail;
     int size;
 } linkedlist_t;
 

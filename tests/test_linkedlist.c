@@ -20,7 +20,7 @@ static void test_create_linkedlist(void** state) {
     linkedlist_t* linkedlist = create_linkedlist();
     assert_non_null(linkedlist);
     assert_null(linkedlist->head);
-    assert_null(linkedlist->last);
+    assert_null(linkedlist->tail);
     assert_int_equal(linkedlist->size, 0);
     destroy(linkedlist);
 }
@@ -37,7 +37,7 @@ static void test_insert_single(void** state) {
     assert_int_equal(ret, 0);
 
     assert_non_null(linkedlist->head);
-    assert_non_null(linkedlist->last);
+    assert_non_null(linkedlist->tail);
     assert_int_equal(linkedlist->size, 1);
     assert_ptr_equal(linkedlist->head, node);
     destroy(linkedlist);
@@ -53,7 +53,7 @@ static void test_insert_bulk(void** state) {
     insert(linkedlist, node2);
 
     assert_ptr_equal(linkedlist->head, node1);
-    assert_ptr_equal(linkedlist->last, node2);
+    assert_ptr_equal(linkedlist->tail, node2);
     destroy(linkedlist);
 }
 
@@ -70,7 +70,7 @@ static void test_delete_head(void** state) {
 
     assert_int_equal(ret, 0);
     assert_ptr_equal(linkedlist->head, node2);
-    assert_ptr_equal(linkedlist->last, node2);
+    assert_ptr_equal(linkedlist->tail, node2);
     assert_int_equal(linkedlist->size, 1);
     destroy(linkedlist);
 }
@@ -88,7 +88,7 @@ static void test_delete_last(void** state) {
 
     assert_int_equal(ret, 0);
     assert_ptr_equal(linkedlist->head, node1);
-    assert_ptr_equal(linkedlist->last, node1);
+    assert_ptr_equal(linkedlist->tail, node1);
     assert_int_equal(linkedlist->size, 1);
     destroy(linkedlist);
 }
@@ -108,7 +108,7 @@ static void test_delete_mid(void** state) {
 
     assert_int_equal(ret, 0);
     assert_ptr_equal(linkedlist->head, node1);
-    assert_ptr_equal(linkedlist->last, node3);
+    assert_ptr_equal(linkedlist->tail, node3);
     assert_int_equal(linkedlist->size, 2);
     destroy(linkedlist);
 }
@@ -121,7 +121,7 @@ static void test_pop_head(void** state) {
     insert(linkedlist, node1);
     node_t* popped = pop(linkedlist);
     assert_null(linkedlist->head);
-    assert_null(linkedlist->last);
+    assert_null(linkedlist->tail);
     assert_ptr_equal(popped, node1);
     assert_int_equal(linkedlist->size, 0);
     destroy_node(popped);
@@ -141,7 +141,7 @@ static void test_pop_last(void** state) {
 
     assert_ptr_equal(popped, node2);
     assert_ptr_equal(linkedlist->head, node1);
-    assert_ptr_equal(linkedlist->last, node1);
+    assert_ptr_equal(linkedlist->tail, node1);
     assert_int_equal(linkedlist->size, 1);
     destroy_node(popped);
     destroy(linkedlist);
