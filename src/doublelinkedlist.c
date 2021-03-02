@@ -37,6 +37,8 @@ double_linkedlist_t* create_double_linkedlist() {
         return NULL;
     }
     dlinkedlist->size = 0;
+    dlinkedlist->head = NULL;
+    dlinkedlist->tail = NULL;
     return dlinkedlist;
 }
 
@@ -52,12 +54,12 @@ int insert(double_linkedlist_t* dlinkedlist, node_t* node) {
     // empty linkedlist
     if (dlinkedlist->size == 0) {
         dlinkedlist->head = node;
-        dlinkedlist->last = node;
+        dlinkedlist->tail = node;
         dlinkedlist->size++;
     } else {
-        dlinkedlist->last->next = node;
-        node->prev = dlinkedlist->last;
-        dlinkedlist->last = node;
+        dlinkedlist->tail->next = node;
+        node->prev = dlinkedlist->tail;
+        dlinkedlist->tail = node;
         dlinkedlist->size++;
     }
 
@@ -77,7 +79,7 @@ int delete(double_linkedlist_t* dlinkedlist, node_t* node) {
     if (dlinkedlist->size == 1) {
         destroy_node(node);
         dlinkedlist->head = NULL;
-        dlinkedlist->last = NULL;
+        dlinkedlist->tail = NULL;
         dlinkedlist->size--;
         return 0;
     }
@@ -90,9 +92,9 @@ int delete(double_linkedlist_t* dlinkedlist, node_t* node) {
     // if node is not found return 1
     if (!pointer) return 1;
 
-    // case when last node
-    if (node == dlinkedlist->last) {
-        dlinkedlist->last = pointer->prev;
+    // case when tail node
+    if (node == dlinkedlist->tail) {
+        dlinkedlist->tail = pointer->prev;
         pointer->prev->next = pointer->next;
     } else if (node == dlinkedlist->head) {
         dlinkedlist->head = pointer->next;
@@ -128,9 +130,9 @@ int destroy(double_linkedlist_t* dlinkedlist) {
 }
 
 /**
- * @brief function to pop the last item
+ * @brief function to pop the tail item
  * @param dlinkedlist
- * @return: last node || NULL
+ * @return: tail node || NULL
  */
 node_t* pop(double_linkedlist_t* dlinkedlist) {
     if (!dlinkedlist || dlinkedlist->size == 0) return NULL;
@@ -139,14 +141,14 @@ node_t* pop(double_linkedlist_t* dlinkedlist) {
     if (dlinkedlist->size == 1) {
         pointer = dlinkedlist->head;
         dlinkedlist->head = NULL;
-        dlinkedlist->last = NULL;
+        dlinkedlist->tail = NULL;
         dlinkedlist->size--;
         return pointer;
     }
 
-    pointer = dlinkedlist->last;
+    pointer = dlinkedlist->tail;
     pointer->prev->next = NULL;
-    dlinkedlist->last = pointer->prev;
+    dlinkedlist->tail = pointer->prev;
     dlinkedlist->size--;
 
     return pointer;
