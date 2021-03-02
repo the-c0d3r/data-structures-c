@@ -19,3 +19,8 @@ This C Project requires the following to be installed.
 cmake . && cmake --build .
 ctest # should run all the tests
 ```
+
+### Data structures implemented
+- stack
+- linked list
+- double linked list
