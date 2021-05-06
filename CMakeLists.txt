@@ -10,6 +10,8 @@ SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 ADD_LIBRARY(stack OBJECT src/stack.c)
 ADD_LIBRARY(linkedlist OBJECT src/linkedlist.c)
 ADD_LIBRARY(doublelinkedlist OBJECT src/doublelinkedlist.c)
+ADD_LIBRARY(ring OBJECT src/ring.c)
+ADD_LIBRARY(bubblesort OBJECT src/bubblesort.c)
 
 # unit testing
 FIND_PACKAGE(CMOCKA REQUIRED)
