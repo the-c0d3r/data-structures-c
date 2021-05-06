@@ -24,3 +24,7 @@ ctest # should run all the tests
 - stack
 - linked list
 - double linked list
+
+### Algorithms implemented
+Sorting Algorithm
+- bubble sort
