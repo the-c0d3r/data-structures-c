@@ -22,6 +22,7 @@ LIST(APPEND tests_names "test_stack")
 LIST(APPEND tests_names "test_linkedlist")
 LIST(APPEND tests_names "test_doublelinkedlist")
 LIST(APPEND tests_names "test_bubblesort")
+LIST(APPEND tests_names "test_ring")
 
 # Declare all tests targets
 LIST(LENGTH tests_names count)
